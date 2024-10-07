@@ -13,7 +13,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Kecamatan</th>
-                    <th>Id Kabupaten</th>
+                    <th>Nama Kabupaten</th>
                     <th>Id Kecamatan</th>
                 </tr>
             </thead>
@@ -21,9 +21,9 @@
                 @foreach ($kecamatan as $key => $kec)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $kab->nama_kabupaten }}</td>
-                        <td>{{ $kab->kabupaten_id }}</td>
-                        <td>{{ $kab->kecamatan_id }}</td>
+                        <td>{{ $kec->nama_kecamatan }}</td>
+                        <td>{{ $kec->kabupaten->nama_kabupaten }}</td>
+                        <td>{{ $kec->id }}</td>
                     </tr>
                 @endforeach
             </tbody>

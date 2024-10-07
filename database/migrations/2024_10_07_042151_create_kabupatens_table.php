@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('kabupatens', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->string('nama_kabupaten');
+            $table->enum('status', ['Aktif', 'Non Aktif'])->nullable();
             $table->timestamps();
         });
     }

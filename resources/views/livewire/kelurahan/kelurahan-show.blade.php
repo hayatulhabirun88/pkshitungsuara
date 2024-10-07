@@ -1,7 +1,7 @@
 <div>
 
     <div class="d-flex justify-content-between mb-3">
-        <h4 class="d-inline">Kecamatan</h4>
+        <h4 class="d-inline">Kelurahan</h4>
 
 
     </div>
@@ -13,7 +13,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama Kelurahan</th>
-                    <th>Id Kecamatan</th>
+                    <th>Nama Kecamatan</th>
                     <th>Id Desa Kelurahan</th>
                 </tr>
             </thead>
@@ -22,8 +22,8 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $kel->nama_kelurahan }}</td>
-                        <td>{{ $kel->kecamatan_id }}</td>
-                        <td>{{ $kel->kelurahan_id }}</td>
+                        <td>{{ $kel->kecamatan->nama_kecamatan }}</td>
+                        <td>{{ $kel->id }}</td>
                     </tr>
                 @endforeach
             </tbody>

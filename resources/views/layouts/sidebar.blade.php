@@ -27,10 +27,18 @@
             </a>
         </li>
         <li>
-            <a class="waves-effect waves-dark" href="/tps" aria-expanded="false">
-                <i class="icons-User"></i>
+            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                <i class="ti-layout-grid2"></i>
                 <span class="hide-menu">TPS</span>
             </a>
+            <ul aria-expanded="false" class="collapse">
+                <li>
+                    <a href="/tps">Generate TPS</a>
+                </li>
+                <li>
+                    <a href="/tps-list">List TPS</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a class="waves-effect waves-dark" href="/kabupaten_kota" aria-expanded="false">
@@ -52,6 +60,12 @@
         </li>
 
         <li class="nav-small-cap">--- PENGATURAN</li>
+        <li>
+            <a class="waves-effect waves-dark" href="/pengaturan" aria-expanded="false">
+                <i class="icons-Heart"></i>
+                <span class="hide-menu">Pengaturan</span>
+            </a>
+        </li>
         <li>
             <a class="waves-effect waves-dark" href="/pengguna" aria-expanded="false">
                 <i class="icons-Heart"></i>

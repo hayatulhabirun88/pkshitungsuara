@@ -9,6 +9,8 @@ use Livewire\WithPagination;
 class KelurahanShow extends Component
 {
     use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
     public function render()
     {
         $kelurahan = Kelurahan::latest()->paginate(10);

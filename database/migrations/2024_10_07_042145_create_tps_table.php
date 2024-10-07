@@ -16,6 +16,10 @@ return new class extends Migration {
             $table->bigInteger('kelurahan_id');
             $table->bigInteger('kecamatan_id');
             $table->bigInteger('kabupaten_id');
+            $table->bigInteger('jumlah_dpt')->nullable();
+            $table->bigInteger('jumlah_surat_suara')->nullable();
+            $table->bigInteger('jml_surat_suara_sah')->nullable();
+            $table->bigInteger('jml_surat_suara_tidak_sah')->nullable();
             $table->timestamps();
         });
     }

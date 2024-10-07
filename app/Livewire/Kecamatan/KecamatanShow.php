@@ -11,6 +11,7 @@ class KecamatanShow extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         $kecamatan = Kecamatan::latest()->paginate(10);

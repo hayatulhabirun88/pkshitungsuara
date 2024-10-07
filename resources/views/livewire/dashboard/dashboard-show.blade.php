@@ -53,7 +53,7 @@
                                             <p class="text-muted">TPS</p>
                                         </div>
                                         <div class="ms-auto">
-                                            <h2 class="counter text-purple">{{ @$totalTPS }}</h2>
+                                            <h2 class="counter text-purple">{{ @$totalTps }}</h2>
                                         </div>
                                     </div>
                                 </div>
