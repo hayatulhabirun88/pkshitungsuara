@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\KelurahanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaslonController;
+use App\Http\Controllers\KabupatenController;
+use App\Http\Controllers\KecamatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
-require __DIR__.'/auth.php';
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+Route::get('/paslon', [PaslonController::class, 'index'])->name('paslon');
+Route::get('/kabupaten_kota', [KabupatenController::class, 'index'])->name('kabupaten');
+Route::get('/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
+Route::get('/desa_kelurahan', [KelurahanController::class, 'index'])->name('kelurahan');
