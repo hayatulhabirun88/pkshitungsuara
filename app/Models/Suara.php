@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Suara extends Model
 {
     use HasFactory;
+
+
+    protected $table = 'suaras';
+
+    protected $guarded = [];
 }

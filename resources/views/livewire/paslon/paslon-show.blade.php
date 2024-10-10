@@ -150,7 +150,11 @@
                         <td><img width="80" src="{{ asset('/') }}storage/foto_paslon/{{ $pass->foto }}"
                                 alt="">
                         </td>
-                        <td>{{ $pass->wilayah_id }}</td>
+                        <td>
+                            @if ($pass->wilayah_id)
+                                {{ \App\Models\Kabupaten::find($pass->wilayah_id)->nama_kabupaten }}
+                            @endif
+                        </td>
                         <td>
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalPaslon" wire:click.prevent="edit('{{ $pass->id }}')"><i

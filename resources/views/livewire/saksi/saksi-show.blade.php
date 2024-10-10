@@ -126,42 +126,82 @@
                                             wire:model.live="kecamatan">
                                             <option value="">--Pilih Kecamatan</option>
                                             @foreach ($listKecamatan as $kec)
-                                                <option value="{{ $kec->id }}">{{ $kec->nama_kecamatan }}
+                                                <option value="{{ $kec->id }}"
+                                                    {{ $kecamatan == $kec->id ? 'selected' : '' }}>
+                                                    {{ $kec->nama_kecamatan }}
                                                 </option>
                                             @endforeach
                                         </select>
+                                        @error('kecamatan')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
+
                                 @if ($kecamatan)
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="kelurahan">Kelurahan</label>
-                                            <select class="form-control" name="kelurahan" id="kelurahan"
-                                                wire:model.live="kelurahan">
-                                                <option value="">--Pilih Kelurahan</option>
-                                                @foreach ($listKelurahan as $kel)
-                                                    <option value="{{ $kel->id }}">{{ $kel->nama_kelurahan }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+
+                                    @php
+                                        $tpskecamatan = \App\Models\Tps::where('kecamatan_id', $kecamatan)->first();
+                                    @endphp
+                                    @if ($tpskecamatan)
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="kelurahan">Kelurahan</label>
+                                                <select class="form-control" name="kelurahan" id="kelurahan"
+                                                    wire:model.live="kelurahan">
+                                                    <option value="">--Pilih Kelurahan</option>
+                                                    @foreach ($listKelurahan as $kel)
+                                                        <option value="{{ $kel->id }}"
+                                                            {{ $kelurahan == $kel->id ? 'selected' : '' }}>
+                                                            {{ $kel->nama_kelurahan }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('kelurahan')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-md-4">
+                                            <br>
+                                            <span class="text-danger mt-3">Tps Belum di Input</span>
+                                        </div>
+                                    @endif
+
+
                                 @endif
 
                                 @if ($kelurahan)
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="tps">TPS</label>
-                                            <select class="form-control" name="tps" id="tps"
-                                                wire:model.live="tps">
-                                                <option value="">--Pilih TPS--</option>
-                                                @foreach ($listTps as $tp)
-                                                    <option value="{{ $tp->id }}">{{ $tp->nama_tps }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                    @php
+                                        $tpskelurahan = \App\Models\Tps::where('kelurahan_id', $kelurahan)->first();
+                                    @endphp
+                                    @if ($tpskelurahan)
+
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="tps">TPS</label>
+                                                <select class="form-control" name="tps" id="tps"
+                                                    wire:model.live="tps">
+                                                    <option value="">--Pilih TPS--</option>
+                                                    @foreach ($listTps as $tp)
+                                                        <option value="{{ $tp->id }}"
+                                                            {{ $tps == $tp->id ? 'selected' : '' }}>
+                                                            {{ $tp->nama_tps }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('tps')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-md-4">
+                                            <br>
+                                            <span class="text-danger mt-3">Tps Belum di Input</span>
+                                        </div>
+                                    @endif
                                 @endif
 
                             </div>
@@ -223,8 +263,15 @@
                         <td>{{ $sak->nama_lengkap }}</td>
                         <td>{{ substr($sak->alamat, 0, 100) . ' ...' }}</td>
                         <td>{{ $sak->no_hp }}</td>
-                        <td>{{ $sak->status }}</td>
-                        <td>{{ $sak->tps_id }}</td>
+                        <td>
+                            @if ($sak->status == 'Aktif')
+                                <span class="badge bg-success">{{ $sak->status }}</span>
+                            @else
+                                <span class="badge bg-danger">{{ $sak->status }}</span>
+                            @endif
+                        </td>
+                        <td>{{ @$sak->tps->nama_tps }} {{ @$sak->tps->kelurahan->nama_kelurahan }}
+                            {{ @$sak->tps->kecamatan->nama_kecamatan }}</td>
                         <td>
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalSaksi" wire:click.prevent="edit('{{ $sak->id }}')"><i

@@ -71,7 +71,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" wire:click.prevent="hapus">Hapus</button>
+                    <button type="submit" class="btn btn-danger" wire:click.prevent="hapus"
+                        wire:confirm="Menghapus data TPS akan membuat anda Menginput kembali Data Saksi, Apakah anda yakin akan menghapus data ini?">Hapus</button>
                     <button type="submit" class="btn btn-primary"
                         wire:click.prevent="{{ $kelurahan_id ? 'update' : 'save' }}">{{ $kelurahan_id ? 'Ubah' : 'Tambah' }}</button>
                     </form>

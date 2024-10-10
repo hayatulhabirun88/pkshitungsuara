@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('level', ['saksi', 'admin']);
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->defaultValue('Tidak Aktif');
             $table->rememberToken();
             $table->timestamps();
         });

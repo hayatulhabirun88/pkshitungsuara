@@ -14,6 +14,7 @@ class DashboardShow extends Component
         $totalPaslon = Paslon::count();
         $totalSaksi = Saksi::count();
         $totalTps = Tps::count();
-        return view('livewire.dashboard.dashboard-show', compact(['totalPaslon', 'totalSaksi', 'totalTps']));
+        $totalDpt = Tps::sum('jumlah_dpt');
+        return view('livewire.dashboard.dashboard-show', compact(['totalPaslon', 'totalSaksi', 'totalTps', 'totalDpt']));
     }
 }

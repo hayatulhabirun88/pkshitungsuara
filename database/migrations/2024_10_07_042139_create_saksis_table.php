@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('nama_lengkap');
             $table->text('alamat');
             $table->string('no_hp');
-            $table->string('status');
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->defaultValue('Tidak Aktif');
             $table->string('kode_register')->nullable();
             $table->string('tps_id');
             $table->bigInteger('user_id');

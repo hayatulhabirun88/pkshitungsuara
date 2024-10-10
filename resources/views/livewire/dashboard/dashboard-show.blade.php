@@ -13,7 +13,8 @@
                                             <p class="text-muted">PASLON</p>
                                         </div>
                                         <div class="ms-auto">
-                                            <h2 class="counter text-primary">{{ @$totalPaslon }}</h2>
+                                            <h2 class="counter text-primary">
+                                                {{ number_format(@$totalPaslon, 0, ',', '.') }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +34,8 @@
                                             <p class="text-muted">SAKSI</p>
                                         </div>
                                         <div class="ms-auto">
-                                            <h2 class="counter text-cyan">{{ @$totalSaksi }}</h2>
+                                            <h2 class="counter text-cyan">{{ number_format(@$totalSaksi, 0, ',', '.') }}
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +55,8 @@
                                             <p class="text-muted">TPS</p>
                                         </div>
                                         <div class="ms-auto">
-                                            <h2 class="counter text-purple">{{ @$totalTps }}</h2>
+                                            <h2 class="counter text-purple">{{ number_format(@$totalTps, 0, ',', '.') }}
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +76,9 @@
                                             <p class="text-muted">DPT</p>
                                         </div>
                                         <div class="ms-auto">
-                                            <h2 class="counter text-success">{{ @$totalDPT }}</h2>
+                                            <h2 class="counter text-success">
+                                                {{ number_format(@$totalDpt, 0, ',', '.') }}
+                                            </h2>
                                         </div>
                                     </div>
                                 </div>

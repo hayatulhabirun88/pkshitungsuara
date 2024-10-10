@@ -14,4 +14,9 @@ class Saksi extends Model
     protected $table = 'saksis';
 
     protected $guarded = [];
+
+    public function tps()
+    {
+        return $this->belongsTo(Tps::class);
+    }
 }

@@ -131,8 +131,17 @@ class SaksiShow extends Component
         $this->alamat = $saksi->alamat;
         $this->no_hp = $saksi->no_hp;
         $this->status = $saksi->status;
-        $this->tps_id = $saksi->tps_id;
         $this->user_id = $saksi->user_id;
+
+        if ($saksi->tps_id) {
+            $datatps = Tps::find($saksi->tps_id);
+            $this->tps = $saksi->tps_id;
+            $this->kecamatan = $datatps->kecamatan_id;
+            $this->kelurahan = $datatps->kelurahan_id;
+            $this->listKelurahan = Kelurahan::where('kecamatan_id', $this->kecamatan)->get();
+
+            $this->listTps = Tps::where('kelurahan_id', $this->kelurahan)->get();
+        }
 
         $this->listKabupaten = Kabupaten::where('status', 'Aktif')->first();
 
@@ -167,11 +176,22 @@ class SaksiShow extends Component
             'username.string' => 'Username harus berupa teks.',
         ]);
 
+        if ($this->tps) {
+            $this->validate([
+                'tps' => 'unique:saksis,tps_id,' . $saksi->id,
+            ], [
+                'tps.unique' => 'TPS sudah digunakan oleh saksi lain.',
+            ]);
+            $saksi->tps_id = $this->tps;
+        } else {
+            $saksi->tps_id = null;
+        }
 
         $saksi->nama_lengkap = $this->nama_saksi;
         $saksi->no_hp = $this->no_hp;
         $saksi->status = $this->status;
         $saksi->alamat = $this->alamat;
+
         $saksi->save();
 
         session()->flash('success', 'Data Saksi ' . $this->nama_saksi . '  Berhasil Diubah.');
@@ -205,6 +225,9 @@ class SaksiShow extends Component
         $this->no_hp = '';
         $this->status = '';
         $this->tps_id = '';
+        $this->tps = '';
+        $this->kecamatan = '';
+        $this->kelurahan = '';
         $this->user_id = '';
         $this->username = '';
         $this->email = '';

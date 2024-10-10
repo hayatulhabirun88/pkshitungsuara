@@ -15,6 +15,8 @@
     <link href="{{ asset('/') }}/assets/node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('/') }}dist/css/style.min.css" rel="stylesheet">
+    <!-- page css -->
+    <link href="{{ asset('/') }}dist/css/pages/progressbar-page.css" rel="stylesheet">
 
 </head>
 
