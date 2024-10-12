@@ -9,7 +9,7 @@
         </li>
         @if (auth()->user()->level == 'saksi')
             <li>
-                <a class="waves-effect waves-dark" href="/suara" aria-expanded="false">
+                <a class="waves-effect waves-dark" href="/input-suara-saksi" aria-expanded="false">
                     <i class="ti-layout-grid2"></i>
                     <span class="hide-menu">Suara</span>
                 </a>

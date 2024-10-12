@@ -8,15 +8,16 @@ use App\Models\Paslon;
 use Livewire\Component;
 use App\Models\Kabupaten;
 use App\Models\Kelurahan;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class InputSuara extends Component
 {
     use WithPagination;
-
+    use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
 
-    public $kabupaten_id, $kecamatan_id, $kelurahan_id, $selectedId, $kelurahan, $kecamatan, $kabupaten, $jumlah_surat_suara, $jml_surat_suara_sah, $jml_surat_suara_tidak_sah, $nama_tps, $nama_kelurahan, $nama_kecamatan, $nama_kabupaten;
+    public $kabupaten_id, $kecamatan_id, $kelurahan_id, $selectedId, $kelurahan, $kecamatan, $kabupaten, $jumlah_surat_suara, $jml_surat_suara_sah, $jml_surat_suara_tidak_sah, $nama_tps, $nama_kelurahan, $nama_kecamatan, $nama_kabupaten, $bukti;
 
     public $listKabupaten = [];
 
@@ -90,12 +91,25 @@ class InputSuara extends Component
             ]);
         }
 
-        Tps::find($this->selectedId)->update([
-            'jumlah_surat_suara' => $this->jumlah_surat_suara,
-            'jml_surat_suara_sah' => $this->jml_surat_suara_sah,
-            'jml_surat_suara_tidak_sah' => $this->jml_surat_suara_tidak_sah,
-        ]);
+        $tps = Tps::find($this->selectedId);
 
+        $tps->jumlah_surat_suara = $this->jumlah_surat_suara;
+        $tps->jml_surat_suara_sah = $this->jml_surat_suara_sah;
+        $tps->jml_surat_suara_tidak_sah = $this->jml_surat_suara_tidak_sah;
+
+        if ($this->bukti) {
+            $this->validate([
+                'bukti' => 'image|mimes:jpeg,png,jpg',
+            ]);
+
+            @unlink(public_path('storage/bukti/' . $tps->bukti));
+
+            $fileName = time() . '-' . $this->bukti->getClientOriginalName();
+            $this->bukti->storeAs('bukti', $fileName, 'public');
+            $tps->bukti = $fileName;
+        }
+
+        $tps->save();
 
         session()->flash('success', 'Data Suara Berhasil Diubah.');
         $this->isOpen = false;
@@ -121,6 +135,7 @@ class InputSuara extends Component
     public function mount()
     {
         $this->listKabupaten = Kabupaten::where('status', 'Aktif')->first();
+
     }
 
     public function render()

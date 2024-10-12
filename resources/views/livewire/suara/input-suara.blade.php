@@ -62,7 +62,7 @@
                                     <label for="jumlah_suara">Jml Suara No Urut {{ $lpaslon->no_urut }}</label>
                                     <input type="text" class="form-control" id="jumlah_suara"
                                         placeholder="Jumlah suara" wire:model="jumlah_suara.{{ $lpaslon->id }}">
-                                    @error('jumlah_suara.{{ $lpaslon->id }}')
+                                    @error('jumlah_suara. ' . $lpaslon->id)
                                         <span class="text-danger" style="font-size:12px;">{{ $message }}</span>
                                     @enderror
 
@@ -98,6 +98,14 @@
                                     @enderror
 
                                 </div>
+                                <div class="mb-3">
+                                    <label for="bukti"><strong>Foto Form C1 atau Plano</strong></label>
+                                    <input type="file" class="form-control" wire:model="bukti">
+                                    @error('bukti')
+                                        <span class="text-danger" style="font-size:12px;">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
                             </div>
                         </div>
 
@@ -122,6 +130,7 @@
                     <th>Kabupaten</th>
                     <th>Nama TPS</th>
                     <th>Suara Terkumpul</th>
+                    <th>Bukti</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -152,6 +161,43 @@
                             </div>
                         </td>
                         <td>
+                            @if ($tp->bukti)
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop-{{ $tp->id }}">
+                                    Foto Form C1
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop-{{ $tp->id }}"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img width="100%"
+                                                    src="{{ asset('/') }}storage/bukti/{{ $tp->bukti }}"
+                                                    alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <span class="btn btn-sm btn-danger">Belum di Upload</span>
+                            @endif
+
+
+
+                        </td>
+                        <td>
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTps"
                                 wire:click.prevent="edit('{{ $tp->id }}')"><i class="fa fa-edit"></i></button>
                         </td>
@@ -161,12 +207,5 @@
         </table>
         {{ $tps->links() }}
     </div>
-    @if ($closeModalTps)
-        <script>
-            var modalElement = document.getElementById('modalTps');
-            bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
-        </script>
-    @endif
 
 </div>

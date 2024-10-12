@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->bigInteger('jumlah_surat_suara')->nullable();
             $table->bigInteger('jml_surat_suara_sah')->nullable();
             $table->bigInteger('jml_surat_suara_tidak_sah')->nullable();
+            $table->string('bukti');
             $table->timestamps();
         });
     }
