@@ -50,7 +50,7 @@
 
             <!-- Register Form -->
             <div class="register-form mt-4">
-                <h6 class="mb-3 text-center">Masuk ke Aplikasi</h6>
+                <h6 class="mb-3 text-center">Masuk ke SIRIKA</h6>
 
                 @livewire('mobile.login')
             </div>

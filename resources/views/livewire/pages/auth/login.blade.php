@@ -1,11 +1,11 @@
 <div>
     <section id="wrapper" class="login-register login-sidebar"
-        style="background-image:url({{ asset('/') }}/gambarpks.jpg);">
+        style="background-image:url({{ asset('/') }}/background-login.jpg);">
         <div class="login-box card">
             <div class="card-body">
                 <form class="form-horizontal form-material text-center mt-3" id="loginform" wire:submit="login">
-                    <img width="100" src="{{ asset('/') }}/logopks.png" alt="Home" />
-                    <h4 class="mt-5"><strong>Sistem Informasi <br> Hitung Suara <br></strong></h4>
+                    <img width="200" src="{{ asset('/') }}logosirika.png" alt="Home" />
+                    <h4 class="mt-5"><strong>Sistem Informasi <br> Realcount Pilkada <br></strong></h4>
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" wire:model="email" required=""

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/') }}assets/images/favicon.png">
-    <title>Login | PKS Hitung Cepat</title>
+    <title>Login | SIRIKA</title>
 
     <!-- page css -->
     <link href="{{ asset('/') }}dist/css/pages/login-register-lock.css" rel="stylesheet">
